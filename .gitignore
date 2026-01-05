@@ -1,0 +1,24 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+# .terraform.lock.hcl should technically be committed for consistency, but if user wants to ignore it... 
+# actually it's better to keep lock file. But tfvars MUST be ignored.
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.pytest_cache/
+
+# IDE / System
+.DS_Store
+.idea/
+.vscode/
+
+# Node
+node_modules/
