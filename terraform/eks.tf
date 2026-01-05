@@ -3,7 +3,9 @@ module "eks" {
   version = "~> 20.0"
 
   cluster_name    = "hello-world-eks"
-  cluster_version = "1.29"
+  cluster_version = "1.34"
+
+  cluster_enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   cluster_endpoint_public_access = true
 

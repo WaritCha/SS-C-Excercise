@@ -3,6 +3,7 @@ import sys
 import time
 import os
 from flask import Flask, request
+from prometheus_flask_exporter import PrometheusMetrics
 
 # Configure structured logging
 logging.basicConfig(
@@ -13,6 +14,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
+
 port = int(os.environ.get("PORT", 8080))
 
 @app.before_request
