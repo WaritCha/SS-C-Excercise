@@ -53,5 +53,5 @@ variable "tags" {
 variable "git_repo_url" {
   description = "URL of the Git repository for ArgoCD to sync"
   type        = string
-  default     = "https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+  default     = "https://github.com/WaritCha/SS-C-Excercise.git"
 }
