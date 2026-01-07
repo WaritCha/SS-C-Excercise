@@ -34,20 +34,15 @@ cd terraform
 terraform init
 terraform apply
 ```
-*Type `yes` when prompted.*
 
-### 2. Configure GitHub Secrets
-Go to your GitHub Repo -> Settings -> Secrets and variables -> Actions.
-Add your AWS keys (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) so the pipeline can deploy.
-
-### 3. Deploy Application
+### 2. Deploy Application
 Push your code to the `main` branch. This triggers the GitHub Actions workflow which will:
 1.  Run tests.
 2.  Build the Docker image with `curl` installed (for health checks).
 3.  Push the image to ECR.
 4.  Update the ECS Service to use the new image.
 
-### 4. Access the Application
+### 3. Access the Application
 Since we removed the Load Balancer for simplicity, the app runs on a public IP.
 
 1.  Go to **AWS Console** -> **Amazon ECS**.
@@ -56,7 +51,7 @@ Since we removed the Load Balancer for simplicity, the app runs on a public IP.
 4.  Find the **Public IP**.
 5.  Open in browser: `http://<PUBLIC_IP>:8080/`
 
-## Monitoring & Health Checks
+## 4. Monitoring & Health Checks
 
 *   **Container Health**: The `Dockerfile` installs `curl` and runs a health check every 30s against `http://localhost:8080/health`.
 *   **Auto-Recovery**: ECS is configured (`ecs.tf`) to monitor this health check. If it fails 3 times, ECS automatically stops the task and starts a fresh one.
