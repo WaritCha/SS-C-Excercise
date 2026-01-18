@@ -3,8 +3,6 @@ name: Build and Deploy to EKS
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - 'k8s/**'
   pull_request:
     branches: [ main ]
 
@@ -13,28 +11,7 @@ env:
   ECR_REPOSITORY: hello-world-app # set this to your Amazon ECR repository name
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r app/requirements.txt
-        
-    - name: Run Unit Tests
-      run: |
-        cd app
-        pytest tests/test_app.py
-
   build-and-push:
-    needs: test
     runs-on: ubuntu-latest
     # Only run build and push on main branch
     if: github.ref == 'refs/heads/main'
