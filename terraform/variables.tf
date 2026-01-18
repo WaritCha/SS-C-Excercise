@@ -49,9 +49,3 @@ variable "tags" {
     Project     = "hello-world-container"
   }
 }
-
-variable "git_repo_url" {
-  description = "URL of the Git repository for ArgoCD to sync"
-  type        = string
-  default     = "https://github.com/WaritCha/SS-C-Excercise.git"
-}
