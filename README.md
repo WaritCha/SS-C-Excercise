@@ -10,7 +10,6 @@
     *   **ECS Service**: Runs the app in a Fargate task.
     *   **Security Groups**: Allows traffic on port `8080`.
 *   **CI/CD** (GitHub Actions):
-    *   Tests the Python app.
     *   Builds Docker image.
     *   Pushes to AWS ECR.
     *   Forces a new deployment on ECS.
