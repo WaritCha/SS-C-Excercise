@@ -8,7 +8,7 @@
     *   **ECS Cluster**: Fargate cluster (`hello-world-cluster`).
     *   **ECR Repo**: Docker image repository (`hello-world-app`).
     *   **ECS Service**: Runs the app in a Fargate task.
-    *   **Security Groups**: Allows traffic on port `8080`.
+    *   **Security Groups**: Allows traffic on port `80`.
 *   **CI/CD** (GitHub Actions):
     *   Builds Docker image.
     *   Pushes to AWS ECR.
@@ -21,7 +21,7 @@
 3.  **Docker** installed (for local testing).
 4.  **GitHub Repository Secrets** configured:
     *   `AWS_ACCESS_KEY_ID`
-    *   `AWS_SECRET_ACCESS_KEY`ß
+    *   `AWS_SECRET_ACCESS_KEY`
 
 ## Deployment Instructions
 
@@ -48,10 +48,10 @@ Since we removed the Load Balancer for simplicity, the app runs on a public IP.
 2.  Open **Clusters** -> `hello-world-cluster` -> **Tasks**.
 3.  Click on the running Task ID.
 4.  Find the **Public IP**.
-5.  Open in browser: `http://<PUBLIC_IP>:8080/`
+5.  Open in browser: `http://<PUBLIC_IP>/`
 
 ## 4. Monitoring & Health Checks
 
-*   **Container Health**: The `Dockerfile` installs `curl` and runs a health check every 30s against `http://localhost:8080/health`.
+*   **Container Health**: The `Dockerfile` installs `curl` and runs a health check every 30s against `http://localhost:80/health`.
 *   **Auto-Recovery**: ECS is configured (`ecs.tf`) to monitor this health check. If it fails 3 times, ECS automatically stops the task and starts a fresh one.
 *   **Logs**: Application logs are sent to CloudWatch Log Group: `/ecs/hello-world-app`.
