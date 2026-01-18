@@ -19,7 +19,7 @@ variable "aws_secret_key" {
 variable "app_port" {
   description = "Port the application listens on"
   type        = number
-  default     = 8080
+  default     = 80
 }
 
 variable "vpc_cidr" {

@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
-port = int(os.environ.get("PORT", 8080))
+port = int(os.environ.get("PORT", 80))
 
 @app.before_request
 def log_request():
